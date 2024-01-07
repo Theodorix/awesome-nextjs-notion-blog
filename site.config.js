@@ -8,7 +8,7 @@ module.exports = {
 
   // basic site info (required)
   name: '沐轩的博客',
-  domain: 'localhost:3000',
+  domain: '',
   author: '沐轩',
 
   // open graph metadata (optional)
@@ -34,7 +34,7 @@ module.exports = {
   imageCDNHost: null,
 
   // Utteranc.es comments via GitHub issue comments (optional)
-  utterancesGitHubRepo: 'frankcbliu/awesome-nextjs-notion-blog',
+  utterancesGitHubRepo: 'Theodorix/awesome-nextjs-notion-blog',
   utterancesGitHubLabel: '博客评论',
 
   // whether or not to enable support for LQIP preview images (optional)
