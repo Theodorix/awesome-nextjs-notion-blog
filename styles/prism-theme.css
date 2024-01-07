@@ -1,36 +1,70 @@
 /* prism theme adjustments */
 
+/* 设置代码块的背景颜色、边框和圆角 */
 .notion-code {
-  background-color: rgba(249, 250, 251, 1);
-  border: 1px solid rgba(229, 231, 235, 1);
-  border-radius: 0.375rem;
-  padding: 1.5em !important;
+  background-color: rgb(245, 245, 245);
+  border: 2.2px solid rgba(229, 231, 235, 1);
+  border-radius: 0.7rem;
+  padding: 1.3em !important;
+  position: relative;
+  padding-left: 3.5em; /* Make space for line numbers */
+  position: relative;
 }
 
+.notion-code[data-line]::before {
+  content: attr(data-line);
+  position: absolute;
+  left: 0;
+  width: 3em; /* Width of line number area */
+  padding-right: 0.5em; /* Padding between line numbers and code */
+  text-align: right; /* Align numbers to the right */
+  border-right: 1px solid #ddd; /* Separator between line numbers and code */
+  color: #888; /* Color of line numbers */
+  background-color: #f5f5f5; /* Background of line number area */
+}
+
+.notion-code::-webkit-scrollbar {
+  width: 5px; /* Reducing the width of the scrollbar */
+}
+
+.notion-code::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 10px;
+}
+
+.notion-code::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+/* 在暗模式下，修改代码块的颜色和边框颜色 */
 .dark-mode .notion-code {
-  background-color: rgba(17, 24, 39, 1);
+  background-color: rgba(40, 42, 54);
   border-color: rgba(55, 65, 81, 1);
 }
+
+/* 设置代码块内的代码的颜色、边框和背景 */
 .notion code {
-  color: rgba(31, 41, 55, 1);
+  color: rgb(32, 55, 31);
   border: 0 none !important;
   box-shadow: none !important;
   background: none !important;
   padding: 0 !important;
+  font-size: 16px;
 }
+
 .dark-mode .notion code {
   color: rgba(229, 231, 235, 1);
 }
 
 .dark-mode .notion .notion-inline-code {
   background: rgb(71,76,80) !important;
-  color: #ff4081;
+  color: #ff1493;
   padding: .2em .4em !important;
 }
 
 .light-mode .notion .notion-inline-code {
-  color: #ff4081;
-  background: rgba(55,53,47, .1) !important;
+  color: #ff1493;
+  background: rgba(242, 242, 242) !important;
   padding: .2em .4em !important;
 }
 
@@ -102,10 +136,12 @@ pre[class*='language-'] {
 pre::-webkit-scrollbar {
   display: none;
 }
+
 pre {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .token.operator,
 .token.entity,
 .token.url,

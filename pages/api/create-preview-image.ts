@@ -7,6 +7,13 @@ import lqip from 'lqip-modern'
 import * as types from '@lib/types'
 import * as db from '@lib/db'
 
+/**
+ * 这个文件的核心功能是提供一个API接口，允许其他服务或应用发送图像的URL和ID，
+ * 然后该服务将创建一个低质量的图像预览，这通常用于加快页面加载速度，提高用户体验，
+ * 因为低质量的图像占位符比原图像加载得更快。同时，它还将这些信息存储在数据库中以供以后使用，
+ * 如果预览图已经存在，则直接返回现有数据以减少重复的工作负载。
+ */
+
 export default async (
   req: NextApiRequest,
   res: NextApiResponse

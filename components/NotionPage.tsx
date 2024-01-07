@@ -56,6 +56,7 @@ import styles from './styles.module.css'
 //   }
 // )
 
+// 动态导入一些组件
 const Equation = dynamic(() =>
   import('react-notion-x').then((notion) => notion.Equation)
 )
@@ -69,27 +70,35 @@ const Modal = dynamic(
   { ssr: false }
 )
 
+// 获取Emoji的URL
 function getEmojiUrl(emoji) {
   const hex = emoji.codePointAt(0).toString(16)
   return `https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/${hex}.svg`
 }
 
+// Notion页面组件
 export const NotionPage: React.FC<types.PageProps> = ({
   site,
   recordMap,
   error,
   pageId
 }) => {
+  // 初始化路由器
   const router = useRouter()
+  // 获取URL参数中的'lite'
   const lite = useSearchParam('lite')
 
+  // 创建URL参数对象
   const params: any = {}
   if (lite) params.lite = lite
 
   // lite mode is for oembed
+  // lite模式用于oembed
   const isLiteMode = lite === 'true'
+  // 创建URL参数对象
   const searchParams = new URLSearchParams(params)
 
+  // 初始化Dark Mode Hook
   const darkMode = useDarkMode(false, { classNameDark: 'dark-mode' })
 
   React.useEffect(() => {
@@ -240,7 +249,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
             label={config.utterancesGitHubLabel}
             issueMap='issue-term'
             issueTerm='title'
-            theme={darkMode.value ? 'photon-dark' : 'github-light'}
+            theme={darkMode.value ? 'github-dark' : 'github-light'}
           />
         </>
       )
@@ -256,9 +265,12 @@ export const NotionPage: React.FC<types.PageProps> = ({
     }
   }
 
+  // 渲染页面内容
   return (
+    // 提供Twitter上下文提供程序
     <TwitterContextProvider
       value={{
+        // 设置推文AST映射和SWR选项
         tweetAstMap: (recordMap as any).tweetAstMap || {},
         swrOptions: {
           fetcher: (id) =>
@@ -266,7 +278,10 @@ export const NotionPage: React.FC<types.PageProps> = ({
         }
       }}
     >
+      {/* 页面头部 */}
       <PageHead site={site} />
+      {/* 页面的头部元信息 */}
+      {/* HTML头部 */}
       <Head>
         <meta property='og:title' content={title} />
         <meta property='og:site_name' content={site.name} />
@@ -277,7 +292,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
         {config.twitter && (
           <meta name='twitter:creator' content={`@${config.twitter}`} />
         )}
-
+        {/* 如果有社交图像描述，则添加相关元信息 */}
         {socialDescription && (
           <>
             <meta name='description' content={socialDescription} />
@@ -285,7 +300,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
             <meta name='twitter:description' content={socialDescription} />
           </>
         )}
-
+        {/* 如果有社交图像URL，则添加相关元信息 */}
         {socialImage ? (
           <>
             <meta name='twitter:card' content='summary_large_image' />
@@ -295,7 +310,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
         ) : (
           <meta name='twitter:card' content='summary' />
         )}
-
+        {/* 如果有规范页面URL，则添加相关元信息 */}
         {canonicalPageUrl && (
           <>
             <link rel='canonical' href={canonicalPageUrl} />
@@ -303,16 +318,20 @@ export const NotionPage: React.FC<types.PageProps> = ({
             <meta property='twitter:url' content={canonicalPageUrl} />
           </>
         )}
-
+        {/* 页面标题 */}
         <title>{title}</title>
       </Head>
+      {/* 自定义字体 */}
       <CustomFont site={site} />
+      {/* 如果是lite模式，则添加BodyClassName */}
       {isLiteMode && <BodyClassName className='notion-lite' />}
+      {/* Notion渲染器 */}
       <NotionRenderer
         bodyClassName={cs(
           styles.notion,
           pageId === site.rootNotionPageId && 'index-page'
         )}
+        // 定义页面链接组件
         components={{
           pageLink: ({
             href,
@@ -369,6 +388,7 @@ export const NotionPage: React.FC<types.PageProps> = ({
           />
         }
       />
+      {/* 如果配置中启用了GitHub分享按钮，则渲染按钮 */}
       {config.showGithubRibbon && <GitHubShareButton />}
     </TwitterContextProvider>
   )

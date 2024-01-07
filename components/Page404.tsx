@@ -6,8 +6,9 @@ import { domain } from 'site.config'
 
 import styles from './styles.module.css'
 
+
 export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
-  const title = site?.name || 'Notion Page Not Found'
+  const title = site?.name || 'Page Not Found'
 
   return (
     <>
@@ -19,16 +20,24 @@ export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
 
         <title>{title}</title>
       </Head>
-
+    
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1>Notion Page Not Found</h1>
+          <h1 style={{ userSelect: 'none', fontSize: 50}}>Page Not Found</h1>
 
-          <a href={'https://' + domain} className='page-404'>
-            Click here to go back. 👈 (点我返回首页)
-          </a>
+          <div className='page-404-wrapper'>
+            <a href={'https://' + domain} className='page-404'>
+              👉点我返回首页👈
+            </a>
+          </div>
 
-          {error ? (
+          {/* <div className='button-404'>
+            <a href={'https://' + domain}>
+              👉点我返回首页👈
+            </a>
+          </div> */}
+
+          {/* {error ? (
             <p>{error.message}</p>
           ) : (
             pageId && (
@@ -36,11 +45,12 @@ export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
                 Make sure that Notion page "{pageId}" is publicly accessible.
               </p>
             )
-          )}
+          )} */}
 
           <img
             src='/404.png'
             alt='404 Not Found'
+            style={{ userSelect: 'none' }}
             className={styles.errorImage}
           />
         </main>

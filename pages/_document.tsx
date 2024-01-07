@@ -9,11 +9,13 @@ export default class MyDocument extends Document {
       <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
         <Html lang='en'>
           <Head>
+            {/* 异步加载Google Analytics脚本 */}
             <script
               async
               src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsTrackingID}`}
             ></script>
 
+            {/* 初始化Google Analytics跟踪 */}
             <script
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
@@ -27,7 +29,7 @@ export default class MyDocument extends Document {
           `
               }}
             />
-
+            {/* 设置网站图标和各种图标大小 */}
             <link rel='shortcut icon' href='/favicon.png' />
 
             <link
@@ -53,7 +55,7 @@ export default class MyDocument extends Document {
               sizes='16x16'
               href='/favicon-16x16.png'
             />
-
+            {/* 包括PWA（渐进式Web应用）清单 */}
             <link rel='manifest' href='/manifest.json' />
           </Head>
 

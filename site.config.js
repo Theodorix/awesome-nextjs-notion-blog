@@ -7,8 +7,8 @@ module.exports = {
   rootNotionSpaceId: null,
 
   // basic site info (required)
-  name: '沐轩的技术博客',
-  domain: 'szufrank.top',
+  name: '沐轩的博客',
+  domain: 'localhost:3000',
   author: '沐轩',
 
   // open graph metadata (optional)
@@ -18,8 +18,8 @@ module.exports = {
 
   // social usernames (optional)
   twitter: null,
-  github: 'frankcbliu',
-  wechatPublicName: '沐轩不菜',
+  github: '沐轩的Github',
+  wechatPublicName: '沐轩同学',
   wechatPublicURL: '#',
   notionPublic: '#',
 
@@ -50,6 +50,7 @@ module.exports = {
   // example:
   //
   pageUrlOverrides: {
+    '/python': 'Python-7907bfec0eeb41b5bd9a56883aebaa8c?pvs=4',
     '/os': 'ff8a4877c04f42eda0d050547c117ea5',
     '/os-introduction': '68390e1112d749debb748387a82ebd9f',
     '/create-notion-blog': 'Notion-40362e4b8973491bbbc147237f1e9227',

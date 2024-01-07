@@ -8,8 +8,9 @@
  */
 
 .notion {
-  --notion-max-width: 800px;
-  --notion-header-height: 54px;
+  font-size: 18px;
+  --notion-max-width: 800px; /* Notion页面的最大宽度为800像素 */
+  --notion-header-height: 60px; /* Notion页面的页头高度 */
 }
 
 .notion-page {
@@ -17,24 +18,36 @@
   line-height: 1.65;
 }
 
+/* 用于首页的样式设置 */
 .index-page {
-  --notion-max-width: 720px;
+  /* 设置首页的最大宽度 */
+  --notion-max-width: 750px;
 }
 
 .notion-text {
-  padding: 0.5em 2px;
+  /* 设置文本的内边距，上下各0.5em，左右各15px */
+  padding: 3px 15px;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 18px;
 }
 
+/* 设置 Notion 页面中媒体资产的标题居中显示 */
 .notion-asset-caption {
   text-align: center;
+  font-size: 16px;
 }
 
+/* 为 Notion 页面中的媒体资产容器添加上下边距 */
 .notion-asset-wrapper {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  padding-left: 15px; /* 左侧内边距 */
+  padding-right: 15px; /* 右侧内边距 */
 }
 
 .notion-asset-wrapper video {
+  /* 确保视频充满其父容器的高度 */
   height: 100%;
   height: -moz-available;
   /* WebKit-based browsers will ignore this. */
@@ -58,67 +71,83 @@
 }
 
 @media only screen and (min-width: 600px) {
-
+  /* 在屏幕宽度大于等于600px时执行以下样式 */
+  
+  /* 如果图像的宽度不等于1500或不来自Unsplash，则使用object-fit: contain属性 */
   /* Use object-fit contain if image width is not Notion's recommended width */
   .lazy-image-wrapper img:not([width="1500"]):not([src*="//images.unsplash.com"]) {
     object-fit: contain;
   }
 }
 
+/* 设置.notion-header中的.nav-header的最大宽度为1100px，并在水平方向居中对齐 */
 .notion-header .nav-header {
   max-width: 1100px;
   margin: 0 auto;
 }
 
+/* 针对.notion-gallery-grid定义样式 */
+
+/* 使用自动填充的方式定义网格列，并设置列之间的间隔 */
 .notion-gallery-grid {
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   grid-gap: 6vmin;
   gap: 6vmin;
 }
 
+/* 隐藏.notion-page-icon类的显示 */
 .notion-gallery-grid .notion-page-icon {
   display: none;
 }
 
+/* 设置.notion-page-title-text类的字体大小为1.3em，并取消换行 */
 .notion-gallery-grid .notion-page-title-text {
   font-size: 1.3em;
   white-space: unset;
 }
 
+/* 取消文本的换行和溢出效果 */
 .notion-gallery-grid .notion-collection-card-property {
   white-space: unset;
   text-overflow: unset;
 }
 
+/* 设置.notion-property-text类的字体大小 */
 .notion-gallery-grid .notion-property-text {
-  font-size: 14px;
+  font-size: 16px;
 }
 
+/* 设置.notion-collection-card类的边框圆角为16px，去除阴影效果 */
 .notion-collection-card {
   border-radius: 16px;
   box-shadow: none;
 }
 
+/* 设置.notion-collection-card-cover类中的图像边框圆角为16px */
 .notion-collection-card-cover img {
   border-radius: 16px;
 }
 
+/* 为.notion-collection-card类添加可见的溢出效果 */
 .notion-collection-card {
   overflow: visible;
 }
 
+/* 设置.notion-collection-card-cover类的边框圆角为16px，添加阴影效果 */
 .notion-collection-card-cover {
   border-radius: 16px;
   overflow: visible;
   box-shadow: 2px 2px 8px 4px rgba(15, 15, 15, 0.1);
 }
 
+/* 去除.notion-collection-card-cover类的底边框，添加过渡效果和滤镜效果 */
 .notion-collection-card-cover {
   border-bottom: 0 none;
   transition: filter 150ms linear;
   filter: none;
 }
 
+/* 当鼠标悬停在.notion-collection-card上时，增加.notion-collection-card-cover的亮度 */
 .notion-collection-card:hover .notion-collection-card-cover {
   filter: brightness(120%);
 }
@@ -134,23 +163,97 @@
   }
 }
 
+/* 针对.notion-quote类定义样式，包括内边距和字体大小 */
 .notion-quote {
   padding: 0.2em 0.75em;
-  font-size: 1.1em;
+  font-size: 18px;
 }
 
+/* 针对.notion-h1、.notion-h2和.notion-h3类定义样式，设置底部边距 */
 .notion-h1,
 .notion-h2,
 .notion-h3 {
-  margin-bottom: 0.25em;
+  margin-bottom: 0.1px;
+  margin-top: 0.1px;
+}
+
+.notion-h1 {
+  font-size: 24px;
+  margin-top: 4px;
+  position: relative; /* 设置相对定位以方便圆点定位 */
+}
+
+.notion-h1:hover::before {
+  content: ''; /* 必须的，即使没有内容 */
+  display: block;
+  width: 6px; /* 圆点的宽度 */
+  height: 6px; /* 圆点的高度 */
+  background-color: #cccccc; /* 圆点的颜色 */
+  border-radius: 50%; /* 使得四周变为圆形 */
+  position: absolute; /* 绝对定位 */
+  top: -2px; /* 调整圆点的垂直位置 */
+  left: 5px; /* 调整圆点的水平位置 */
+}
+
+.notion-h2 {
+  font-size: 23px;
+  margin-top: 4px;
+  position: relative; /* 设置相对定位以方便圆点定位 */
+}
+
+.notion-h2:hover::before {
+  content: ''; /* 必须的，即使没有内容 */
+  display: block;
+  width: 6px; /* 圆点的宽度 */
+  height: 6px; /* 圆点的高度 */
+  background-color: #cccccc; /* 圆点的颜色 */
+  border-radius: 50%; /* 使得四周变为圆形 */
+  position: absolute; /* 绝对定位 */
+  top: -2px; /* 调整圆点的垂直位置 */
+  left: 5px; /* 调整第一个圆点的水平位置 */
+}
+
+.notion-h2:hover::after {
+  content: '';
+  display: block;
+  width: 6px; /* 圆点的宽度 */
+  height: 6px; /* 圆点的高度 */
+  background-color: #cccccc; /* 圆点的颜色 */
+  border-radius: 50%; /* 使得四周变为圆形 */
+  position: absolute; /* 绝对定位 */
+  top: -2px; /* 调整圆点的垂直位置 */
+  left: 15px; /* 调整第二个圆点的水平位置 */
+}
+
+.notion-h3 {
+  font-size: 20px;
+  margin-top: 4px;
+  position: relative; /* 设置相对定位以方便圆点定位 */
+}
+
+.notion-h3:hover::before {
+  content: ''; /* 用于清除内容 */
+  display: block;
+  width: 26px; /* 增加宽度以放置更大的圆点和间隙 */
+  height: 8px; /* 高度等于新圆点直径 */
+  position: absolute;
+  top: -4px; /* 根据需要调整以垂直居中 */
+  left: 4px;
+  background: 
+    radial-gradient(circle, #cccccc 50%, transparent 50%) 0% 0% / 8px 8px no-repeat, 
+    radial-gradient(circle, #cccccc 50%, transparent 50%) 50% 0% / 8px 8px no-repeat, 
+    radial-gradient(circle, #cccccc 50%, transparent 50%) 100% 0% / 8px 8px no-repeat;
 }
 
 .notion-callout {
-  margin: 0.75em 0;
+  margin: 0.5em 0;
+  border-radius: 8px;
+  border-width: 3px;
 }
 
 .notion-hr {
-  margin: 2em 0;
+  margin: 0.1em 0;
+  border: 1px solid #a9a9a9;
 }
 
 @media only screen and (max-width: 920px) {
@@ -189,6 +292,8 @@
 .notion-title {
   display: block;
   text-align: center;
+  font-size: 40px;
+  margin-bottom: 15px;
 }
 
 .notion-collection-row-property .notion-property {
@@ -203,12 +308,12 @@
 .notion-page-cover {
   max-width: 1200px;
   border-radius: 24px;
-  box-shadow: 2px 2px 8px 4px rgba(15, 15, 15, 0.1);
+  box-shadow: -2px 2px 6px 5px rgba(15, 15, 15, 0.1), 2px 2px 6px 5px rgba(15, 15, 15, 0.1);
 }
 
 @media only screen and (max-width: 1200px) {
   .notion-page-cover {
-    border-radius: 0;
+    border-radius: 0px;
   }
 }
 
@@ -217,22 +322,55 @@
   padding: 2em;
 }
 
+.notion-page-content-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .notion-code {
-  background: rgba(249, 250, 251, 1);
+  background: rgba(247, 246, 243) !important;
   border: 1px solid rgba(229, 231, 235, 1);
   border-radius: 0.375rem;
+  margin: 4px 0 !important;
 }
 
 .notion-link {
   position: relative;
   transition: unset;
   opacity: 1;
+  color: #9d9d9d;
+}
+
+.notion-inline-underscore {
+  text-decoration: underline;
+  text-underline-offset: 5px; /* 调整这个值来改变下划线的位置 */
+}
+
+/* 鼠标悬停时添加小框和文字内容 */
+.notion-link:hover::before {
+  content: "点击链接跳转";
+  position: absolute;
+  background-color: #333; /* 设置小框的背景颜色 */
+  color: #ffffff; /* 设置小框内文字的颜色 */
+  font-size: 14px; /* 设置文本框的字体大小 */
+  padding: 4px 8px; /* 调整小框的内边距 */
+  border-radius: 4px; /* 设置小框的圆角 */
+  /* 调整小框的相对位置 */
+  top: calc(100% + 5px); /* 文本框的上边缘位于鼠标的下边缘的一定距离（5px） */
+  left: 50%; /* 设置小框水平居中 */
+  transform: translateX(-50%); /* 水平居中 */
+  white-space: nowrap; /* 确保文本水平书写 */
+  writing-mode: horizontal-tb; /* 设置文本水平书写 */
+  z-index: 1; /* 确保小框在文本上方 */
 }
 
 .notion-link:hover {
-  border-width: 3px;
-  border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
-  border-image-slice: 1;
+  border-width: 2px;
+  /* border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%); */
+  /* border-image-slice: 1; */
+  color: inherit;
 }
 
 .notion-red_background,
@@ -244,13 +382,12 @@
 .notion-orange_background,
 .notion-brown_background,
 .notion-gray_background {
-  padding: 0 0.5rem;
+  /* padding: 0 0.5rem; */
   /* margin: 0 -0.5rem 0 -0.25rem; */
-  margin: 5px 8px;
-  border-radius: 0.5rem;
-  border-bottom-left-radius: 0.125rem;
+  /* margin: 5px 8px; */
+  border-radius: 0.3rem;
+  /* border-bottom-left-radius: 0.125rem; */
   box-decoration-break: clone;
-
   background-color: none;
 
   /* light yellow */
@@ -339,10 +476,11 @@
 .dark-mode .notion-orange_background,
 .dark-mode .notion-brown_background,
 .dark-mode .notion-gray_background {
-  padding: 0;
-  margin: 0;
-  border-radius: 0;
-  background: none !important;
+  border-radius: 0.3rem;
+  /* border-bottom-left-radius: 0.125rem; */
+  box-decoration-break: clone;
+  background-image: none;
+  background-color: none;
 }
 
 .notion-block-f382a57807bc40779860eb079d0144f2 .lazy-image-wrapper {
@@ -355,24 +493,22 @@
   box-shadow: 0 8px 40px 0 rgb(0 0 0 / 21%);
 }
 
+/* 设置 .notion-header 元素的背景颜色为半透明白色，通过背景滤镜实现模糊效果 */
 .notion-header {
   background: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: saturate(180%) blur(16px);
 }
 
+/* 设置 .notion-header 元素下的 .breadcrumbs 元素横向溢出时显示滚动条 */
 .notion-header .breadcrumbs {
   overflow-x: auto;
 }
 
+/* 在暗黑模式下，设置 .notion-header 元素的背景为透明，添加底部边框阴影效果 */
 .dark-mode .notion-header {
   background: transparent;
   box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
   backdrop-filter: saturate(180%) blur(8px);
-}
-
-.notion-bookmark:hover {
-  border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%);
-  border-image-slice: 1;
 }
 
 /* 自定义样式 */
@@ -395,18 +531,25 @@
 }
 
 .notion-aside-table-of-contents-header {
-  display: none;
+  content: "标题目录"; /* 直接设置新内容 */
+  color: darkgrey;
+  text-align: left;
 }
 
+/* 用于选择目录侧边栏中的内容项 */
 .notion-table-of-contents-item-body {
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; /* 当文本溢出时显示省略号 */
   white-space: nowrap;
+  font-size: 16px;
+  line-height: 1.3;
+  padding-top: 0px; /* 上边距大小 */
+  padding-bottom: 0px; /* 下边距大小 */
 }
 
 .notion-aside-table-of-contents {
   max-width: 250px;
-  max-height: 520px;
+  max-height: 600px;
 }
 
 .notion-aside-table-of-contents::-webkit-scrollbar {
@@ -417,23 +560,53 @@
 /* 自定义toggle 🐥 */
 
 .notion-toggle>summary::before {
-  content: "🐣 点击展开";
+  /* content: "🐣 点击展开"; */
+  content: '';
 }
 
 .notion-toggle[open]>summary::before {
-  content: "🐥 点击收起";
+  /* content: "🐥 点击收起"; */
+  content: '';
 }
 
 .notion-toggle>summary {
-  font-size: 20px !important;
-  color: var(--theme-color, #42b983);
-  font-weight: bold;
+  /* 使用em单位来确保字体大小能够根据用户的默认设置缩放 */
+  font-size: 1em; /* 1em 相当于当前字体大小 */
+  font-weight: 400;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.notion-toggle>div {
+  /* 如果内容在 summary 内的一个 div 元素中 */
+  max-width: 100%; /* 宽度将基于父元素的百分比 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 如果内容直接在 .notion-toggle 内，但不在 summary 元素中 */
+.notion-toggle {
+  max-width: 100%; /* 宽度将基于父元素的百分比 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 响应式设计：根据不同的屏幕宽度调整样式 */
+@media screen and (max-width: 44em) { /* 假设默认字体大小为16px，那么这里的44em将等于704px */
+  .notion-toggle>summary,
+  .notion-toggle>div,
+  .notion-toggle {
+    max-width: 100%; /* 当屏幕宽度较小于44em时，元素宽度为100% */
+    box-sizing: border-box;
+  }
 }
 
 /* 修改 blockquote 样式 */
 .notion-quote {
-  border-left: 4px solid var(--theme-color, #42b983);
+  border-left: 5px solid rgb(224, 224, 224); /* 修改线段颜色为 rgb(224, 224, 224) 并加粗为 8px */
   color: #858585;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 /* fix code block's shadow */
@@ -441,9 +614,368 @@ pre[class*=language-]:after, pre[class*=language-]:before {
   box-shadow: none !important;
 }
 
+.notion-page-icon {
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', NotoColorEmoji,
+    'Noto Color Emoji', 'Segoe UI Symbol', 'Android Emoji', EmojiSymbols;
+  font-size: 1.1em;
+  margin: 2px 2px 2px 2px;
+  fill: var(--fg-color-6);
+  color: var(--fg-color-icon);
+}
+
+.notion-asset-caption {
+  padding: 6px 0 0 2px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  caret-color: var(--fg-color);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--fg-color-3);
+}
+
+.notion-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 200;
+
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  height: var(--notion-header-height);
+  min-height: var(--notion-header-height);
+
+  background: var(--bg-color);
+}
+
+.notion-header .nav-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  text-size-adjust: 100%;
+  line-height: 17px;
+  font-size: 17px;
+}
+
+.notion-header .breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  flex-grow: 0;
+  min-width: 0;
+  margin-right: 8px;
+}
+
+.notion-header .breadcrumb {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* 禁止文本换行 */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  color: var(--fg-color);
+  text-decoration: none;
+  margin: 0px 0px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  transition: background 120ms ease-in 0s;
+  user-select: none;
+  background: transparent;
+  /* 光标样式为指示可点击 */
+  cursor: pointer;
+}
+
+.notion-header .breadcrumb .icon {
+  position: relative;
+  top: 0px;
+}
+
+.notion-header img.icon {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.notion-header .icon {
+  font-size: 18px;
+  margin-right: 5px;
+  line-height: 1.1;
+}
+
+.notion-header .searchIcon {
+  width: 20px;
+  height: 15px;
+  margin-right: 5px;
+  color: var(--fg-color);
+  fill: var(--fg-color);
+}
+
+.notion-header .breadcrumb:not(.active):hover {
+  background: var(--bg-color-0);
+}
+
+.notion-header .breadcrumb:not(.active):active {
+  background: var(--bg-color-1);
+}
+
+.notion-header .breadcrumb.active {
+  cursor: default;
+}
+
+.notion-header .spacer {
+  margin: 0 2px;
+  color: var(--fg-color-2);
+}
+
+.notion-header .button {
+  height: 28px;
+  padding: 0 8px;
+}
+
+.notion-page-icon-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.notion-page-icon-wrapper .notion-page-icon {
+  position: relative;
+  display: block;
+}
+
+.notion-page-has-cover .notion-page-icon-wrapper img.notion-page-icon {
+  top: -52px;
+}
+
+.notion-page-has-cover .notion-page-icon-wrapper span.notion-page-icon {
+  top: -32px;
+}
+
+.notion-page-icon-wrapper span.notion-page-icon {
+  height: 78px;
+  width: 78px;
+  max-width: 78px;
+  max-height: 78px;
+  font-size: 78px;
+  line-height: 1.1;
+  margin-left: 0;
+  display: flex;
+  justify-content: center;
+  color: var(--fg-color-icon);
+}
+
+.notion-page-icon-wrapper img.notion-page-icon {
+  display: block;
+  border-radius: 32%;
+  width: 124px;
+  height: 124px;
+  max-width: 124px;
+  max-height: 124px;
+}
+
+.notion-table-block {
+  width: 100%; /* 设置为100%确保填满父容器 */
+  padding: 0 15px; /* 左右内边距 */
+  display: flex;
+  justify-content: flex-start; /* 将内容对齐到左边 */
+  overflow-x: auto; /* 添加这个属性以便在内容超宽时显示滚动条 */
+}
+
+.notion-table {
+  width: 100%; /* 设置为100%确保填满.notion-table-block */
+  max-width: var(--notion-max-width); /* 保持最大宽度限制，这个值可能需要根据实际需求调整 */
+  overflow-x: auto; /* 如果表格本身宽于屏幕，则允许横向滚动 */
+  margin: 0;
+}
+
+.notion-table-cell-container {
+  border: 1px solid rgb(233, 233, 231);
+  position: relative;
+  vertical-align: top;
+  flex: 1; /* Make each cell flexible within the container */
+  min-width: 200px; /* Minimum width */
+  max-width: 440px; /* Maximum width, can be adjusted if necessary */
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  padding: 0 10px; /* Add padding inside the cell for spacing */
+}
+
+.notion-table-cell-text {
+  text-align: center;
+  white-space: pre-wrap; /* Allows text to wrap within the cell */
+  display: flex; /* Enable flexbox for the text container */
+  align-items: center; /* This will vertically center the text */
+  justify-content: center; /* Horizontally center the text */
+  height: 100%; /* Full height to align items properly */
+  font-size: 18px;
+  line-height: 1.5; /* Adjust line height for better readability when wrapped */
+}
+
+.notion-table-cell-header {
+  background: rgb(245, 245, 245);
+}
+
+.notion-page-title {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  line-height: 1.3;
+  transition: background 120ms ease-in 0s;
+}
+
+.notion-page-title-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  width: 22px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 2px;
+  min-height: 30px;
+  min-width: 30px;
+}
+
+.notion-page-title-text {
+  position: relative;
+  /* top: 1px; */
+  border-bottom: 1px solid var(--fg-color-1);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  vertical-align: center;
+  font-size: 19px;
+}
+
+.notion-page-link {
+  display: flex;
+  color: var(--fg-color);
+  text-decoration: none;
+  width: 100%;
+  height: 40px;
+  margin: 1px 0;
+  border-radius: 7px;
+  transition: background 120ms ease-in 0s;
+}
+
+.notion-page-link:hover {
+  background: var(--bg-color-0);
+}
+
 /* page 404 back to index page text style */
+.page-404-wrapper {
+  text-align: center;
+  transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out; /* 添加文字放大和缩小的过渡效果 */
+}
+
+/* 鼠标悬停时扩展下划线和放大文字 */
+.page-404-wrapper:hover {
+  transform: scale(1.2); /* 鼠标悬停时放大元素 */
+}
+
+/* 点击后缩小文字效果 */
+.page-404-wrapper:active {
+  transform: scale(0.8); /* 点击后缩小元素 */
+}
+
 .page-404 {
   color: #42b983;
   font-weight: bold;
   font-size: 25px;
+  position: relative;
+  text-decoration: none;
+}
+
+/* 添加下划线效果，并增加距离 */
+.page-404::before {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* 调整下划线与文字的距离 */
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #42b983;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.notion-bookmark {
+  margin: 4px auto;
+  width: 96%;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 1px solid var(--fg-color-1);
+  border-radius: 3px;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  border: 2.5px solid #A9A9A9; /* 这里设置边框粗细为2px，颜色为黑色 */
+  border-radius: 0.5em;
+  transition: transform 0.3s; /* 添加平滑过渡效果 */
+}
+
+.notion-bookmark-title {
+  font-size: 16px;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 24px;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.notion-bookmark-description {
+  font-size: 14px;
+  line-height: 16px;
+  opacity: 0.8;
+  height: 32px;
+  overflow: hidden;
+}
+
+/* 当鼠标悬停在 .notion-bookmark 元素上时，设置边框为渐变颜色 */
+.notion-bookmark:hover {
+  /* border-image: linear-gradient(90.68deg, #b439df 0.26%, #e5337e 102.37%); */
+  border-image-slice: 1;
+  transform: scale(1.02); /* 鼠标悬停时放大到105% */
+}
+
+/* 鼠标悬停时扩展下划线 */
+.page-404:hover::before {
+  transform: scaleX(1);
+}
+
+/* 为所有滚动条设置样式 */
+::-webkit-scrollbar {
+  width: 10px; /* 设置滚动条的宽度 */
+  background: transparent; /* 设置滚动条背景为透明 */
+}
+
+/* 设置滚动条滑块的样式 */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* 设置滑块的颜色和透明度 */
+  border-radius: 6px; /* 设置滑块的圆角 */
+}
+
+/* 移除滚动条两端的按钮 */
+::-webkit-scrollbar-button {
+  display: none; /* 隐藏滚动条按钮 */
 }
