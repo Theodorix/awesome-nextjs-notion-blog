@@ -879,6 +879,18 @@ pre[class*=language-]:after, pre[class*=language-]:before {
   background: var(--bg-color-0);
 }
 
+.notion-property-multi_select-item {
+  margin: 0 3px;
+  min-height: 1.4em;
+}
+
+.notion-list-item-property {
+  /* display: flex;
+  align-items: center; */
+  margin-left: 14px;
+  font-size: 16px;
+}
+
 /* page 404 back to index page text style */
 .page-404-wrapper {
   text-align: center;
@@ -965,7 +977,7 @@ pre[class*=language-]:after, pre[class*=language-]:before {
 
 /* 为所有滚动条设置样式 */
 ::-webkit-scrollbar {
-  width: 10px; /* 设置滚动条的宽度 */
+  width: 8px; /* 设置滚动条的宽度 */
   background: transparent; /* 设置滚动条背景为透明 */
 }
 
@@ -977,5 +989,5 @@ pre[class*=language-]:after, pre[class*=language-]:before {
 
 /* 移除滚动条两端的按钮 */
 ::-webkit-scrollbar-button {
-  display: none; /* 隐藏滚动条按钮 */
+  display: none;
 }

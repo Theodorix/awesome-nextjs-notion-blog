@@ -24,7 +24,7 @@
 }
 
 .notion-code::-webkit-scrollbar {
-  width: 5px; /* Reducing the width of the scrollbar */
+  width: 1px !important;
 }
 
 .notion-code::-webkit-scrollbar-thumb {
@@ -38,7 +38,7 @@
 
 /* 在暗模式下，修改代码块的颜色和边框颜色 */
 .dark-mode .notion-code {
-  background-color: rgba(40, 42, 54);
+  background-color: rgba(40, 42, 54) !important;
   border-color: rgba(55, 65, 81, 1);
 }
 
